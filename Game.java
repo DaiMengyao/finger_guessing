@@ -4,27 +4,21 @@ import java.util.Scanner;
 
 public class Game {
 	/**甲方玩家*/
-	String palyer1;
+	//String palyer1;
+	private User user;
 	/**乙方玩家*/
-	String player2;
+	//String player2;'
+	private Computer computer;
+	
 	/**对战次数*/
 	 int count;
 	
-	public String getPalyer1() {
-		return palyer1;
-	}
+	 
+	 Game(){
+		 user = new User();
+		 computer = new Computer();
+	 }
 
-	public void setPalyer1(String palyer1) {
-		this.palyer1 = palyer1;
-	}
-
-	public String getPlayer2() {
-		return player2;
-	}
-
-	public void setPlayer2(String player2) {
-		this.player2 = player2;
-	}
 
 	public int getCount() {
 		return count;
@@ -34,8 +28,23 @@ public class Game {
 		this.count = count;
 	}
 
-	User user = new User();
-	Computer computer = new Computer();
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Computer getComputer() {
+		return computer;
+	}
+
+	public void setComputer(Computer computer) {
+		this.computer = computer;
+	}
+
+
 	/**
 	 * 开始游戏
 	 * @param player1
@@ -46,7 +55,7 @@ public class Game {
 		System.out.println("	-------	猜拳	开始	------	");
 		System.out.println("-------------------------------------");
 		System.out.println("请为自己选择角色：1.吸血鬼 2.狼人 3.变形金刚");
-
+		//选角色
 		user.chooseActor();
 		computer.chooseActor();
 		System.out.println("要开始吗(y/n)");
@@ -60,22 +69,23 @@ public class Game {
 				System.out.println("平局");
 			}
 			if(n1 == 1 && n2==2){
-				System.out.println(computer.getName()+"(电脑)你赢了");
+				System.out.println(computer.getName()+"(电脑)赢了");
 				computer.setScore(computer.getScore() + 1);
 			}
 			if(n1 == 1 && n2==3){
-				System.out.println(user.getName()+"用户你赢了");
+				System.out.println(user.getName()+"(用户)赢了");
 				user.setScore(user.getScore() + 1);
 			}
 			if(n1 == 2 && n2==1){
-				System.out.println(user.getName()+"用户你赢了");
+				System.out.println(user.getName()+"(用户)赢了");
 				user.setScore(user.getScore() + 1);
 			}
 			if(n1 == 2 && n2==3){
-				System.out.println(computer.getName()+"电脑你赢了");
+				System.out.println(computer.getName()+"(电脑)赢了");
 				computer.setScore(computer.getScore() + 1);
 		
 		}
+		//计数轮数
 		count ++;
 		System.out.println("是否继续游戏(y/n)");
 		s = input.next();
@@ -96,13 +106,13 @@ public class Game {
 		if(s1 < s2){
 			System.out.println(computer.getName()+"用户胜");
 		}
-		else{
+		if( s1 == s2){
 			System.out.println("平局");
 		}
 	}
 	
 	/**
-	 * 显示结果
+	 * 展示总结果
 	 */
 	public void display(){
 		System.out.println("------------------------------------");
